@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+<!--Gerekli block kısmızı layoutta olan boş block class-conteimerimize bilgiyi gönderip çalıstırıyor-->
+{% block body %}
+<h1>Konrol Panali</h1>
+<small>Hoşgeldiniz, {{session["username"]}}</small>
+<hr> {% if articles %}
+<!--bosstrap4 table internet sayfasından bir tablo örneği aldık-->
+<!--https://getbootstrap.com/docs/4.1/content/tables/#hoverable-rows-->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <!--Gerekli tabloların baslıkları-->
+            <th scope="col">ID</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Yazar</th>
+            <th scope="col">Tarih</th>
+            <!--Güncel-sil butonları için boş bir başlık atadık yer tablo uzasın diye.-->
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--Tablo başlıkların alt kısımların doldurulması-->
+        {% for article in articles %}
+        <tr>
+            <th scope="row">{{article.id}}</th>
+            <!--Başlıklarımızzı A-etiketi ile buton koyduk gerekli makalenşn bilgilerini versin diye-->
+            <td><a href="/article/{{article.ıd}}">{{article.title}}</a></td>
+            <td>{{article.author}}</td>
+            <td>{{article.created_date}}</td>
+            <!--Güncelleme ve sil butonlarını tablomuza ekldik...-->
+            <td><a href="/edit/{{article.ıd}}" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/delete/{{article.ıd}}" class="btn btn-danger">Sil</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+<hr>
+<!--li-class'ı ile buton olusturduk...-->
+<li class="alert alert-danger">Daha henüz makaleniz bulunmamaktadır.</li>
+{% endif %}
+<a href="/addarticle" class="btn btn-danger">Makale ekle</a> {% endblock %}

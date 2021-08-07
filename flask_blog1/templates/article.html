@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+<!--Gerekli block kısmızı layoutta olan boş block class-conteimerimize bilgiyi gönderip çalıstırıyor-->
+{% block body %} {% if article %}
+<h2>{{article.title}}</h2>
+<hr> Yazar :{{article.author}}
+<hr> Tarih :{{article.created_date}}
+<hr>
+<!--Eğer resim gibi bir ifade varsa bunu kod olarak değil oldugu gibi gösterir.-->
+{{article.content|safe}}
+
+<!--Makale yoksa hata mesajı ekrana gösterir.-->
+{% else %}
+
+<div class="alert alert-warning">Böyle bir makale bulunmuyor.</div>
+
+{% endif %} {% endblock %}

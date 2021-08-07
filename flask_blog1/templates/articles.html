@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+<!--Gerekli block kısmızı layoutta olan boş block class-conteimerimize bilgiyi gönderip çalıstırıyor-->
+{% block body %}
+<h1>Makaleler</h1>
+<hr>
+
+<!--if-else ile makale olup olmadıgını kontrl ettik-->
+{% if articles %}
+
+<!--Form action - metod="post" ile search yani arama butonumuzu aktif ediyoruz.-->
+<form action="/search" method="POST">
+    <input type="text" name="keyword" class="input-sm" maxlength="64" placeholder="Ara...">
+    <button type="submit" class="btn btn-danger">Ara</button>
+
+</form>
+<hr>
+
+
+<!--ul clas'ı ile list-group ile makale başlıklarının listelemiş olduk-->
+<ul class="list-group">
+    {% for article in articles %}
+    <li class="list-group-item"><a href="/article/{{article.ıd}}">{{article.title}}</a></li>
+
+    {% endfor %}
+</ul>
+{% else %}
+
+<div class="alert alert-danger">Bu bölümde henüz makale bulunmamaktadır.</div>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,28 @@
+<!--
+
+Bu kısım bizim addarticle.html nin aynısıdr çünkü düzenleme kısmını yani CK-EDİTÖR sayfasına tekrar yölecektir...    
+
+-->
+
+
+{% extends "layout.html" %}
+<!--Gerekli block kısmızı layoutta olan boş block class-conteimerimize bilgiyi gönderip çalıstırıyor-->
+{% block body %}
+<!--yardımcı html includes/formhelper sayfamızı ilgili html sayfamıza aktardık-->
+{% from "includes/formhelpers.html" import render_field %}
+
+<h2>Makale Güncelle</h2>
+<hr>
+
+<form method=post>
+    <!--form-claslarımızın formhelperi ile gerekli inputlar olusturulmustur.-->
+    <dl>
+        {{ render_field(form.title,class = "form-control") }} {{ render_field(form.content,class = "form-control") }}
+
+
+    </dl>
+    <button type="submit" class="btn btn-danger">Güncelle</button>
+</form>
+
+
+{% endblock %}
